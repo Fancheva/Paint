@@ -6,6 +6,7 @@ var savePNGButton = wrapper.querySelector("[data-action=save-png]");
 var saveJPGButton = wrapper.querySelector("[data-action=save-jpg]");
 var saveSVGButton = wrapper.querySelector("[data-action=save-svg]");
 var canvas = wrapper.querySelector("canvas");
+let signatureField = document.getElementById("signatureField");
 var signaturePad = new SignaturePad(canvas, {
   // It's Necessary to use an opaque color when saving image as JPEG;
   // this option can be omitted if only saving as PNG or SVG
@@ -79,47 +80,89 @@ clearButton.addEventListener("click", function (event) {
   signaturePad.clear();
 });
 
-undoButton.addEventListener("click", function (event) {
-  var data = signaturePad.toData();
+// undoButton.addEventListener("click", function (event) {
+//   var data = signaturePad.toData();
 
-  if (data) {
-    data.pop(); // remove the last dot or line
-    signaturePad.fromData(data);
+//   if (data) {
+//     data.pop(); // remove the last dot or line
+//     signaturePad.fromData(data);
+//   }
+// });
+
+// changeColorButton.addEventListener("click", function (event) {
+//   var r = Math.round(Math.random() * 255);
+//   var g = Math.round(Math.random() * 255);
+//   var b = Math.round(Math.random() * 255);
+//   var color = "rgb(" + r + "," + g + "," + b +")";
+
+//   signaturePad.penColor = color;
+// });
+
+// savePNGButton.addEventListener("click", function (event) {
+//   if (signaturePad.isEmpty()) {
+//     alert("Please provide a signature first.");
+//   } else {
+//     var dataURL = signaturePad.toDataURL();
+//     download(dataURL, "signature.png");
+//   }
+// });
+function Export2Word(element, filename = ''){
+  var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+  var postHtml = "</body></html>";
+  var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+
+  var blob = new Blob(['\ufeff', html], {
+      type: 'application/msword'
+  });
+  
+  // Specify link url
+  var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+  
+  // Specify file name
+  filename = filename?filename+'.doc':'document.doc';
+  
+  // Create download link element
+  var downloadLink = document.createElement("a");
+
+  document.body.appendChild(downloadLink);
+  
+  if(navigator.msSaveOrOpenBlob ){
+      navigator.msSaveOrOpenBlob(blob, filename);
+  }else{
+      // Create a link to the file
+      downloadLink.href = url;
+      
+      // Setting the file name
+      downloadLink.download = filename;
+      
+      //triggering the function
+      downloadLink.click();
   }
-});
-
-changeColorButton.addEventListener("click", function (event) {
-  var r = Math.round(Math.random() * 255);
-  var g = Math.round(Math.random() * 255);
-  var b = Math.round(Math.random() * 255);
-  var color = "rgb(" + r + "," + g + "," + b +")";
-
-  signaturePad.penColor = color;
-});
-
-savePNGButton.addEventListener("click", function (event) {
-  if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
-  } else {
-    var dataURL = signaturePad.toDataURL();
-    download(dataURL, "signature.png");
-  }
-});
-
+  
+  document.body.removeChild(downloadLink);
+}
 saveJPGButton.addEventListener("click", function (event) {
   if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
+    alert("Перед сохранением нужно подписатся");
   } else {
     var dataURL = signaturePad.toDataURL("image/jpeg");
-    download(dataURL, "signature.jpg");
+    console.log(dataURL)
+    
+    signatureField.innerHTML = '<img src="' + dataURL + '" alt="user signature" />'
+    Export2Word('contract', 'word-content');
+    // download(dataURL, "signature.jpg");
   }
 });
 
-saveSVGButton.addEventListener("click", function (event) {
-  if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
-  } else {
-    var dataURL = signaturePad.toDataURL('image/svg+xml');
-    download(dataURL, "signature.svg");
-  }
-});
+
+
+// saveSVGButton.addEventListener("click", function (event) {
+//   if (signaturePad.isEmpty()) {
+//     alert("Please provide a signature first.");
+//   } else {
+//     var dataURL = signaturePad.toDataURL('image/svg+xml');
+
+//     download(dataURL, "signature.svg");
+//   }
+// });
+
