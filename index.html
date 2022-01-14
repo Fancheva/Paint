@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Signature Pad demo</title>
-  <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
+  <title>Signature demo</title>
+  <meta name="description" content="Signature demo test">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/ie9.css">
   <![endif]-->
 
-  
+<!--   
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-39365077-1']);
@@ -27,37 +27,59 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  </script>
+  </script> -->
 </head>
 <body onselectstart="return false">
-  <a id="github" style="position: absolute; top: 0; right: 0; border: 0" href="https://github.com/szimek/signature_pad">
-    <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
-  </a>
+  <div id="contract">
+    <h1>Contract</h1>
+    <div class="cityData">
+      <p>Kyiv</p>
+      <p>14 Jan 2021</p>
+    </div>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quisquam vitae, quidem totam nostrum cupiditate aperiam. Asperiores suscipit illum laudantium dolor optio et minus consectetur inventore sunt debitis commodi non ea corporis est maxime, alias libero sapiente quae ex eos. Dicta, tempore magni quos, eius repellat a labore voluptates mollitia delectus, soluta reiciendis officia fuga. Laudantium odio ea ipsa numquam non quibusdam, facilis quidem error quaerat perferendis rerum, earum accusamus ratione commodi fuga delectus labore corrupti repudiandae quisquam placeat omnis quod perspiciatis excepturi. Ipsam, maxime voluptatibus eligendi fugiat obcaecati doloremque natus dicta itaque hic voluptas consectetur! Aspernatur facere deserunt modi.</p>
+    <h3>1. Lorem, ipsum dolor.</h3>
+    <p>1.1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quasi porro doloremque voluptatem officia eos quo natus provident nobis totam repellat distinctio odit, beatae harum mollitia explicabo ad soluta nihil!</p>
+    <p>1.2 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore possimus et quod rerum. Quia hic error exercitationem labore facilis voluptates dignissimos ratione. Porro asperiores hic deserunt nam facere officia. Magnam!</p>
+    <h3>2. Lorem ipsum dolor sit amet.</h3>
+    <p>2.1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, ipsam? Eaque maxime officiis consequatur debitis reiciendis error, nostrum sint tempora nam id voluptatibus dolores pariatur amet dignissimos provident exercitationem? Nobis beatae voluptatem qui ratione deserunt blanditiis doloremque illo consectetur reprehenderit?</p>
+    <p>2.2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam nulla nobis, neque facere eligendi deserunt nesciunt. Repellat ratione harum repellendus voluptate qui aut amet? Nobis, consequatur? Eius, id odit eaque quod ipsum soluta earum odio. Ipsam saepe reprehenderit assumenda. Repudiandae?</p>
+    <p>2.3 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut illum alias eveniet, dicta eaque cumque? Praesentium repudiandae atque ratione modi!</p>
+    <h3>3. Lorem ipsum dolor sit.</h3>
+    <p>3.1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde vitae optio consequatur obcaecati corporis rem repudiandae repellat quaerat mollitia saepe in, minima, eligendi fugit repellendus dolore atque perspiciatis corrupti amet earum, libero commodi itaque! Sapiente ad blanditiis quis eveniet repellat ipsa neque. Adipisci deserunt officia laudantium temporibus dolores exercitationem quas beatae quam praesentium neque iste animi quod rerum magni fugit alias impedit, autem, architecto illum, modi facilis rem quaerat veritatis quos? Unde pariatur est eum! Pariatur quaerat obcaecati ipsam ut distinctio neque asperiores minus provident minima illum velit, nulla excepturi adipisci repudiandae ullam accusamus commodi quis earum odio dolore quia!</p>
+    <p>3.2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem est molestiae optio in id quisquam maiores enim nam minima veniam incidunt delectus, harum voluptate ipsum voluptatibus dicta excepturi odit pariatur hic alias quis. Nam nostrum possimus, quisquam obcaecati, beatae ad, neque unde culpa sapiente reiciendis ab cupiditate perferendis eius natus itaque consectetur placeat at. Autem adipisci fuga quis corrupti tempore quisquam praesentium reiciendis amet doloribus quod. Nesciunt, quisquam assumenda minima excepturi in aliquid explicabo sit corrupti doloremque maiores repudiandae laborum, quas soluta itaque commodi accusamus a vero ratione illum mollitia distinctio! Blanditiis impedit at, voluptate est totam magnam illo possimus repellat nam vel in molestias eveniet tempore ea quasi sit quod dolores, quia dolorem suscipit quam, numquam voluptatem repudiandae animi. Laborum illo doloribus consequatur libero optio mollitia nemo rem recusandae iste atque provident delectus maiores vel omnis quasi dolores ea architecto in fuga, corrupti possimus praesentium dolor ut. Eius, consequatur.</p>
 
+    <div id="signatureField">
+
+    </div>
+  </div>
   <div id="signature-pad" class="signature-pad">
+
     <div class="signature-pad--body">
       <canvas></canvas>
     </div>
     <div class="signature-pad--footer">
-      <div class="description">Sign above</div>
+      <div class="description">Подпишитесь здесь</div>
 
       <div class="signature-pad--actions">
         <div>
-          <button type="button" class="button clear" data-action="clear">Clear</button>
-          <button type="button" class="button" data-action="change-color">Change color</button>
-          <button type="button" class="button" data-action="undo">Undo</button>
+          <button type="button" class="button clear" data-action="clear">Очистить</button>
+          <!-- <button type="button" class="button" data-action="change-color">Change color</button> -->
+          <!-- <button type="button" class="button" data-action="undo">Назад</button> -->
 
         </div>
         <div>
-          <button type="button" class="button save" data-action="save-png">Save as PNG</button>
-          <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
-          <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+          <!-- <button type="button" class="button save" data-action="save-png">Save as PNG</button> -->
+          <button type="button" class="button save" data-action="save-jpg">Сохранить</button>
+          <!-- <button type="button" class="button save" data-action="save-svg">Save as SVG</button> -->
         </div>
       </div>
     </div>
   </div>
 
+
+
   <script src="js/signature_pad.umd.js"></script>
   <script src="js/app.js"></script>
+
 </body>
 </html>
